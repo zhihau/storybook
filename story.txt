@@ -1,0 +1,13 @@
+1. 作業 故事 可以自換主題
+2. 切換頁面5頁
+3. 內容
+  圖片 字幕  上一頁按鈕  下一頁按鈕 中英文字幕切換
+4. 加分
+  資料庫
+5. select * from books;
+-- sql抓除來array丟到前端
+6. if year
+ if month
+ if page 1
+ if lan=chinese
+7.js object
