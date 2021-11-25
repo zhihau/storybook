@@ -29,7 +29,27 @@ if (isset($_GET['lang'])) {
   }
 }
 
-
+// 依據瀏覽器設定切換語言
+$uiLang = "en";
+// echo $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+$localePreferences = explode(",", $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+if (is_array($localePreferences) && count($localePreferences) > 0) {
+    $browserLocale = $localePreferences[0];
+    // echo "<hr>";
+    // echo $browserLocale;
+    // echo "<hr>";
+    $browserLocale=strtolower($browserLocale);
+    switch ($browserLocale) {
+        case "en-us":
+        case "en":
+            $uiLang = "en";
+            break;
+        case "zh-tw":
+            $uiLang = "tw";
+            break;    
+    }
+}
+include "./lang/" . $uiLang . ".php";
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +68,10 @@ if (isset($_GET['lang'])) {
 <body>
 
   <div class="container mt-5" style="background-image:linear-gradient(rgba(255, 255, 255, 0.5), rgba(211, 211, 211, 0.5)),url('./images/bg.jpg');background-repeat: no-repeat;
-  background-size: cover; box-shadow: 2px 2px 18px darkgrey;">
+  background-size: cover; box-shadow: 2px 2px 10px #262626;
+    border-width: 0 1px 1px 0;
+    border-style: solid;
+    border-color: darkgray;">
     <div class="row bg-cover">
       <?php
 
@@ -68,16 +91,19 @@ if (isset($_GET['lang'])) {
         $nextUrl = "#";
       }
       ?>
-      <div class="col-sm-2 text-center  align-self-sm-center yellow-btn yellow-btn-right yellow-btn-topmost" onclick="window.location.href='<?= $prevUrl ?>'">
+      <div class="col-sm-2 text-center  align-self-sm-center yellow-btn yellow-btn-right yellow-btn-topmost" title="<?=PREVIOUS_PAGE?>" onclick="window.location.href='<?= $prevUrl ?>'">
         <i class="fas fa-caret-left display-1"></i>
       </div>
-      <div class="col-sm-8 text-center mt-5 mb-5" style="padding: 0;background-color: white;">
+      <div class="col-sm-8 text-center mt-5 mb-5" style="padding: 0;background-color: white;box-shadow: 0px 2px 10px #737373;
+    border-width: 0 1px 1px 0;
+    border-style: solid;
+    border-color: darkgray;">
         <img class="img-fluid" src="./images/pages/<?= $books[$orgPage]['src']; ?>" alt="index" width="640px" height="460px" />
-        <div style="height:76px">
+        <div style="height:152px">
           <p style="font-size: x-large;"><?= $books[$orgPage][$lang] ?></p>
         </div>
       </div>
-      <div class="col-sm-2 text-center align-self-sm-center yellow-btn yellow-btn-left" onclick="window.location.href='<?= $nextUrl ?>'">
+      <div class="col-sm-2 text-center align-self-sm-center yellow-btn yellow-btn-left" title="<?=NEXT_PAGE?>" onclick="window.location.href='<?= $nextUrl ?>'">
         <i class="fas fa-caret-right display-1 arrow"></i>
       </div>
     </div>
@@ -88,13 +114,21 @@ if (isset($_GET['lang'])) {
     </div> -->
     <div class="row">
 
-      <div class="col-sm-2 text-center mr-3 yellow-btn" onclick="window.location.href='./index.php'">
+      <div class="col-sm-2 text-center mr-3 yellow-btn" title="<?=HOME?>" onclick="window.location.href='./index.php'">
         <i class="fa fa-home display-1"></i>
       </div>
       
       <?php
-      $name = ($lang == "chinese") ? "英文" : "中文";
-      $lang = ($lang == "chinese") ? "english" : "chinese";
+
+      if($lang == "chinese"){
+        $name ="英文";
+        $langTitle=ENG;
+        $langArg="english";
+      }else{
+        $name ="中文";
+        $langTitle=CHI;
+        $langArg="chinese";
+      }
       // if(isset($_GET["lang"])){
 
       //   $_SESSION["lang"]=$lang;
@@ -102,7 +136,7 @@ if (isset($_GET['lang'])) {
       $currentPage = $orgPage + 1;
       // $currentUrl="index.php?page=$currentPage";
       ?>
-      <div class="col-sm-2 text-center align-self-sm-center yellow-btn yellow-btn-padding" onclick="window.location.href='index.php?page=<?= $currentPage ?>&lang=<?= $lang ?>'">
+      <div class="col-sm-2 text-center align-self-sm-center yellow-btn yellow-btn-padding" title="切換為英文" onclick="window.location.href='index.php?page=<?= $currentPage ?>&lang=<?= $langArg ?>'">
         <span><?= $name ?></span>
       </div>
 

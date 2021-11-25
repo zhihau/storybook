@@ -1,56 +1,56 @@
 * {
     font-family: "Microsoft JhengHei";
-    border: 2px solid black;
-    
-  }
+    /* border: 2px solid black; */
+}
 
-  body{
+body {
     background-color: #ebebe0;
+}
 
-  }
-
-  .yellow-btn {
-    border-bottom: 2px solid darkgrey;
+.yellow-btn {
+    border-width: 2px;
+    border-style: solid;
+    border-color: #fffbe6 darkgray darkgray #fffbe6;
     border-radius: 60px;
-    box-shadow: 2px 2px 18px darkgrey;
+    box-shadow: 2px 2px 8px #4d4d4d;
     background-color: #ccad00;
     /* color: #332b00; */
-    border-top: 2px solid #fffbe6;
-    border-left: 2px solid #fffbe6;
-    border-right: 2px solid darkgrey;
     cursor: pointer;
     color: #332b00;
-  }
+}
 
-  .yellow-btn-topmost{
+.yellow-btn-topmost {
     z-index: 8;
-  }
+}
 
-  .yellow-btn-right{
+.yellow-btn-right {
     position: relative;
     right: -30px;
-  }
-  .yellow-btn-left{
+}
+
+.yellow-btn-left {
     position: relative;
     left: -30px;
-  }
+}
 
-  .yellow-btn:hover {
+.yellow-btn:hover {
     background-color: #332b00;
-  }
-  .yellow-btn-padding{
-    padding: 14px 0;
-  }
-  .yellow-btn span{
-    color:inherit;
-    font-weight: bolder;
-  font-size: xxx-large;
-  
-  }
+}
 
-  .yellow-btn:hover i{
+.yellow-btn-padding {
+    padding: 14px 0;
+}
+
+.yellow-btn span {
+    color: inherit;
+    font-weight: bolder;
+    font-size: xxx-large;
+}
+
+.yellow-btn:hover i {
     color: #ccad00;
-  }
-  .yellow-btn:hover span{
+}
+
+.yellow-btn:hover span {
     color: #ccad00;
-  }
+}
